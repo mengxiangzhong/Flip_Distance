@@ -1,0 +1,2 @@
+# Flip_Distance
+给定两个trangulation，求经过k次flip后，是否能从一个trangulation变到另一个。
