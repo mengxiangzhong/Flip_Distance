@@ -32,59 +32,67 @@ public class Flip {
 				recursion(tem,temd,current + 1,e);
 			else return;
 		}
-		if(t.fninit[result[0]].sn[result[1]] == 2) {
+		if(tem.fninit[result[0]].sn[result[1]] == 2
+				&& !(tem.last_edge_x == result[0] && tem.last_edge_y == result[1]
+				|| tem.last_edge_x == result[1] && tem.last_edge_y == result[0])) {
 			tem.current_edge_x = result[0];
 			tem.current_edge_y = result[1];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[1]].sn[result[2]] == 2) {
+		if(tem.fninit[result[1]].sn[result[2]] == 2
+				&& !(tem.last_edge_x == result[1] && tem.last_edge_y == result[2]
+				|| tem.last_edge_x == result[2] && tem.last_edge_y == result[1])) {
 			tem.current_edge_x = result[1];
 			tem.current_edge_y = result[2];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[2]].sn[result[3]] == 2) {
+		if(tem.fninit[result[2]].sn[result[3]] == 2
+				&& !(tem.last_edge_x == result[2] && tem.last_edge_y == result[3]
+				|| tem.last_edge_x == result[3] && tem.last_edge_y == result[2])) {
 			tem.current_edge_x = result[2];
 			tem.current_edge_y = result[3];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[3]].sn[result[0]] == 2) {
+		if(tem.fninit[result[3]].sn[result[0]] == 2
+				&& !(tem.last_edge_x == result[0] && tem.last_edge_y == result[3]
+				|| tem.last_edge_x == result[3] && tem.last_edge_y == result[0])) {
 			tem.current_edge_x = result[3];
 			tem.current_edge_y = result[0];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
@@ -105,59 +113,67 @@ public class Flip {
 			else return;
 		}
 		tem.diagonal(result);
-		if(t.fninit[result[0]].sn[result[1]] == 2) {
+		if(tem.fninit[result[0]].sn[result[1]] == 2
+				&& !(tem.last_edge_x == result[0] && tem.last_edge_y == result[1]
+				|| tem.last_edge_x == result[1] && tem.last_edge_y == result[0])) {
 			tem.current_edge_x = result[0];
 			tem.current_edge_y = result[1];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[1]].sn[result[2]] == 2) {
+		if(tem.fninit[result[1]].sn[result[2]] == 2
+				&& !(tem.last_edge_x == result[2] && tem.last_edge_y == result[1]
+				|| tem.last_edge_x == result[1] && tem.last_edge_y == result[2])) {
 			tem.current_edge_x = result[1];
 			tem.current_edge_y = result[2];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[2]].sn[result[3]] == 2) {
+		if(tem.fninit[result[2]].sn[result[3]] == 2
+				&& !(tem.last_edge_x == result[2] && tem.last_edge_y == result[3]
+				|| tem.last_edge_x == result[3] && tem.last_edge_y == result[2])) {
 			tem.current_edge_x = result[2];
 			tem.current_edge_y = result[3];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[3]].sn[result[0]] == 2) {
+		if(tem.fninit[result[3]].sn[result[0]] == 2
+				&& !(tem.last_edge_x == result[0] && tem.last_edge_y == result[3]
+				|| tem.last_edge_x == result[3] && tem.last_edge_y == result[0])) {
 			tem.current_edge_x = result[3];
 			tem.current_edge_y = result[0];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
@@ -179,59 +195,67 @@ public class Flip {
 		}
 		tem.diagonal(result);
 		v.add(tem);
-		if(t.fninit[result[0]].sn[result[1]] == 2) {
+		if(tem.fninit[result[0]].sn[result[1]] == 2
+				&& !(tem.last_edge_x == result[0] && tem.last_edge_y == result[1]
+				|| tem.last_edge_x == result[1] && tem.last_edge_y == result[0])) {
 			tem.current_edge_x = result[0];
 			tem.current_edge_y = result[1];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[1]].sn[result[2]] == 2) {
+		if(tem.fninit[result[1]].sn[result[2]] == 2
+				&& !(tem.last_edge_x == result[2] && tem.last_edge_y == result[1]
+				|| tem.last_edge_x == result[1] && tem.last_edge_y == result[2])) {
 			tem.current_edge_x = result[1];
 			tem.current_edge_y = result[2];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[2]].sn[result[3]] == 2) {
+		if(tem.fninit[result[2]].sn[result[3]] == 2
+				&& !(tem.last_edge_x == result[2] && tem.last_edge_y == result[3]
+				|| tem.last_edge_x == result[3] && tem.last_edge_y == result[2])) {
 			tem.current_edge_x = result[2];
 			tem.current_edge_y = result[3];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
-		if(t.fninit[result[3]].sn[result[0]] == 2) {
+		if(tem.fninit[result[3]].sn[result[0]] == 2
+				&& !(tem.last_edge_x == result[0] && tem.last_edge_y == result[3]
+				|| tem.last_edge_x == result[3] && tem.last_edge_y == result[0])) {
 			tem.current_edge_x = result[3];
 			tem.current_edge_y = result[0];
-			int []temresult = t.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
+			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
-				firstCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-				if( t.isConvex(result) ){
-					secondCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					thirdCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fourthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
-					fifthCase(t,k - 1,kk - 1,temresult,temdd,current,edge);
+				firstCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+				if( tem.isConvex(result) ){
+					secondCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					thirdCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fourthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
+					fifthCase(tem,k - 1,kk - 1,temresult,temdd,current,edge);
 				}
 			}
 		}
@@ -252,11 +276,26 @@ public class Flip {
 			else return;
 		}
 		tem.diagonal(result);
+		if (k - 1 == 0 || kk - 1 == 0){
+			int []temd = temdd.clone();
+			Edge [] e = edge.clone();
+			int sum = 0;
+			for (int i = 1; i < e.length; i++) {
+				if (tem.fninit[e[i].s].sn[e[i].t] !=2 && tem.fnfinal[e[i].s].sn[e[i].t] == 2) {
+					sum++;
+				}
+				else e[i].state = true;
+			}
+			tem.cmp();
+			if (tem.step_remained == sum)
+				recursion(tem,temd,current + 1,e);
+			else return;
+		}
 		Trangulation tem2 = v.lastElement();
 		int []temresult = tem2.isQuadrilateral(tem2.current_edge_x,tem2.current_edge_y);
 		if ( temresult != null ){
 			firstCase(tem2,k - 1,kk - 1,temresult,temdd,current,edge);
-			if( t.isConvex(result) ){
+			if( tem2.isConvex(result) ){
 				secondCase(tem2,k - 1,kk,temresult,temdd,current,edge);
 				thirdCase(tem2,k - 1,kk,temresult,temdd,current,edge);
 				fourthCase(tem2,k - 1,kk,temresult,temdd,current,edge);
@@ -283,11 +322,26 @@ public class Flip {
 			else return;
 		}
 		tem.diagonal(result);
+		if (k - 1 == 0 || kk - 1 == 0){
+			int []temd = temdd.clone();
+			Edge [] e = edge.clone();
+			int sum = 0;
+			for (int i = 1; i < e.length; i++) {
+				if (tem.fninit[e[i].s].sn[e[i].t] !=2 && tem.fnfinal[e[i].s].sn[e[i].t] == 2) {
+					sum++;
+				}
+				else e[i].state = true;
+			}
+			tem.cmp();
+			if (tem.step_remained == sum)
+				recursion(tem,temd,current + 1,e);
+			else return;
+		}
 		Trangulation tem2 = v.lastElement();
 		int []temresult = tem2.isQuadrilateral(tem2.current_edge_x,tem2.current_edge_y);
 		if ( temresult != null ){
 			firstCase(tem2,k - 1,kk - 1,temresult,temdd,current,edge);
-			if( t.isConvex(result) ){
+			if( tem2.isConvex(result) ){
 				secondCase(tem2,k - 1,kk,temresult,temdd,current,edge);
 				thirdCase(tem2,k - 1,kk,temresult,temdd,current,edge);
 				fourthCase(tem2,k - 1,kk,temresult,temdd,current,edge);
