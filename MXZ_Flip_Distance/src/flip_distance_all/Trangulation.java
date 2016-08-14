@@ -6,7 +6,7 @@ import java.util.Vector;
 public class Trangulation {
 	FirstNode [] fninit,fnfinal;
 	static int vn,pk;
-	int current_edge_x,current_edge_y,last_edge_x,last_edge_y,step_remained;
+	int current_edge_x,current_edge_y,last_edge_x,last_edge_y,last_last_edge_x,last_last_edge_y,step_remained;
 	
 	
 	Trangulation(){
@@ -20,6 +20,8 @@ public class Trangulation {
 		current_edge_y = 0;
 		last_edge_x = 0;
 		last_edge_y = 0;
+		last_last_edge_x = 0;
+		last_last_edge_y = 0;
 		step_remained = 0;
 	}
 	
@@ -27,6 +29,8 @@ public class Trangulation {
 		Trangulation t = new Trangulation();
 		t.last_edge_x = current_edge_x;
 		t.last_edge_y = current_edge_y;
+		t.last_last_edge_x = last_edge_x;
+		t.last_last_edge_y = last_edge_y;
 		t.step_remained = step_remained;
 		for(int i = 1;i <= vn;i++){
 			t.fninit[i].x = fninit[i].x;
@@ -62,18 +66,34 @@ public class Trangulation {
 
 	int [] isQuadrilateral(int posi1,int posi2){
 		int [] result = new int[4];
-		float a = (float)((fninit[posi2].y - fninit[posi1].y) * 1.0 / (fninit[posi2].x - fninit[posi1].x));
-		float b = fninit[posi2].y - a * fninit[posi2].x;
 		int k1 = 0,k2 = 0;
-		float max = -100000000,min = 100000000;
-		for(int i = 1;i <= vn;i++){
-			if(fninit[posi1].sn[i] != 0 && fninit[posi2].sn[i] != 0){
-				float distance = fninit[i].y - a * fninit[i].x - b;
-				if(distance > 0 && distance < min){
-					k1 = i;
+		if (fninit[posi2].x - fninit[posi1].x != 0){
+			float a = (float)((fninit[posi2].y - fninit[posi1].y) * 1.0 / (fninit[posi2].x - fninit[posi1].x));
+			float b = fninit[posi2].y - a * fninit[posi2].x;
+			float max = -100000000,min = 100000000;
+			for(int i = 1;i <= vn;i++){
+				if(fninit[posi1].sn[i] != 0 && fninit[posi2].sn[i] != 0){
+					float distance = fninit[i].y - a * fninit[i].x - b;
+					if(distance > 0 && distance < min){
+						k1 = i;
+					}
+					else if(distance < 0 && distance > max){
+						k2 = i;
+					}
 				}
-				else if(distance < 0 && distance > max){
-					k2 = i;
+			}
+		}
+		else{
+			float max = -100000000,min = 100000000;
+			for(int i = 1;i <= vn;i++){
+				if(fninit[posi1].sn[i] != 0 && fninit[posi2].sn[i] != 0){
+					float distance = fninit[i].x - fninit[posi1].x;
+					if(distance > 0 && distance < min){
+						k1 = i;
+					}
+					else if(distance < 0 && distance > max){
+						k2 = i;
+					}
 				}
 			}
 		}
