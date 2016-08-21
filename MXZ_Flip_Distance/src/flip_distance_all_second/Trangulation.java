@@ -107,14 +107,18 @@ public class Trangulation {
 	}
 
 	boolean isConvex(int [] result){
-		float a = (float)((fninit[result[1]].y - fninit[result[3]].y) * 1.0 / (fninit[result[1]].x - fninit[result[3]].x));
-		float b = fninit[result[1]].y - a * fninit[result[1]].x;
-		float p,q,pp,qq;
-		p = fninit[result[0]].y - a * fninit[result[0]].x - b;
-		q = fninit[result[2]].y - a * fninit[result[2]].x - b;
-		pp = fninit[result[2]].y - a * fninit[result[2]].x - b;
-		qq = fninit[result[0]].y - a * fninit[result[0]].x - b;
-		if(p * q < 0 || pp * qq < 0)
+		float p = 0,q = 0;
+		if (fninit[result[1]].x - fninit[result[3]].x != 0){
+			float a = (float)((fninit[result[1]].y - fninit[result[3]].y) * 1.0 / (fninit[result[1]].x - fninit[result[3]].x));
+			float b = fninit[result[1]].y - a * fninit[result[1]].x;
+			p = fninit[result[0]].y - a * fninit[result[0]].x - b;
+			q = fninit[result[2]].y - a * fninit[result[2]].x - b;
+		}
+		else{
+			p = fninit[result[0]].x - fninit[result[1]].x;
+			q = fninit[result[2]].x - fninit[result[1]].x;
+		}
+		if(p * q < 0)
 			return true;
 		else
 			return false;
@@ -248,7 +252,11 @@ public class Trangulation {
 				for (Edge e : v1) {
 					e.state = false;
 				}
-				f.recursion(m, tem, 1, v1);
+				for (int j = 0; j <= tem[0]; j++) {
+					System.out.print(tem[j] + "	");
+				}
+				System.out.println();
+				f.recursion(m, tem, 1, v1,0);
 				if (f.state) break;
 			}
 		}
