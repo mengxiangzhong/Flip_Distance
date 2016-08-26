@@ -149,7 +149,8 @@ public class Trangulation {
 		}
 	}
 	public static void main(String[] args) {
-		System.out.println("ÇëÊäÈë¶¥µãÊı£º");
+		long starttime = 0,endtime = 0;
+		System.out.println("è¯·è¾“å…¥é¡¶ç‚¹æ•°ï¼š");
 		Scanner si = new Scanner(System.in);
 		int vertexnumber;
 		vertexnumber = si.nextInt();
@@ -160,16 +161,16 @@ public class Trangulation {
 //		System.out.println(m.fninit);
 //		System.out.println(m.fninit[0]);		
 		
-		System.out.println("ÇëÊäÈë¶¥µãÖµ£º");
+		System.out.println("è¯·è¾“å…¥é¡¶ç‚¹å€¼ï¼š");
 		for(int i = 1; i <= vertexnumber;i++){
 			m.fninit[i].x = si.nextInt();
 			m.fninit[i].y = si.nextInt();
 		}
-		System.out.println("ÇëÊäÈë¹Ì¶¨±ßÊı£º");
+		System.out.println("è¯·è¾“å…¥å›ºå®šè¾¹æ•°ï¼š");
 //		int x1,x2,y1,y2;
 		int x1,x2;
 		int en1 = si.nextInt();
-		System.out.println("ÇëÊäÈë¹Ì¶¨±ßÖµ£º");
+		System.out.println("è¯·è¾“å…¥å›ºå®šè¾¹å€¼ï¼š");
 //		for(int i = 0;i < en1;i++){
 //			x1 = si.nextInt();
 //			y1 = si.nextInt();
@@ -190,9 +191,9 @@ public class Trangulation {
 			m.fnfinal[x1].sn[x2] = 1;
 			m.fnfinal[x2].sn[x1] = 1;
 		}
-		System.out.println("ÇëÊäÈë¿É±ä±ßÊı£º");
+		System.out.println("è¯·è¾“å…¥å¯å˜è¾¹æ•°ï¼š");
 		int en2 = si.nextInt();
-		System.out.println("ÇëÊäÈëÔ­Ê¼¿É±ä±ßÖµ£º");
+		System.out.println("è¯·è¾“å…¥åŸå§‹å¯å˜è¾¹å€¼ï¼š");
 //		for(int i = 0;i < en2;i++){
 //			x1 = si.nextInt();
 //			y1 = si.nextInt();
@@ -209,7 +210,7 @@ public class Trangulation {
 			m.fninit[x1].sn[x2] = 2;
 			m.fninit[x2].sn[x1] = 2;
 		}
-		System.out.println("ÇëÊäÈëÄ¿±ê¿É±ä±ßÖµ£º");
+		System.out.println("è¯·è¾“å…¥ç›®æ ‡å¯å˜è¾¹å€¼ï¼š");
 //		for(int i = 0;i < en2;i++){
 //			x1 = si.nextInt();
 //			y1 = si.nextInt();
@@ -226,11 +227,13 @@ public class Trangulation {
 			m.fnfinal[x1].sn[x2] = 2;
 			m.fnfinal[x2].sn[x1] = 2;
 		}
-		System.out.println("ÇëÊäÈë²ÎÊıÖµ£º");
+		System.out.println("è¯·è¾“å…¥å‚æ•°å€¼ï¼š");
 		int parameter = si.nextInt();
+		starttime = System.currentTimeMillis();
 		Trangulation.pk = parameter;
 		m.cmp();
-		Flip f = new Flip(m.step_remained);;
+		Flip f = new Flip(m.step_remained);
+//		f.output = true;
 		if (m.step_remained <= parameter) {
 			DigitDecomposition dd = new DigitDecomposition(parameter);
 			dd.create();
@@ -252,10 +255,10 @@ public class Trangulation {
 				for (Edge e : v1) {
 					e.state = false;
 				}
-				for (int j = 0; j <= tem[0]; j++) {
+				if (f.output)for (int j = 0; j <= tem[0]; j++) {
 					System.out.print(tem[j] + "	");
 				}
-				System.out.println();
+				if (f.output)System.out.println();
 				f.recursion(m, tem, 1, v1,0);
 				if (f.state) break;
 			}
@@ -263,6 +266,8 @@ public class Trangulation {
 		if(f.state)System.out.println("Yes instance!");
 		else System.out.println("No instance!");
 		si.close();
+		endtime = System.currentTimeMillis();
+		System.out.println("è¿è¡Œæ—¶é—´ä¸ºï¼š" + (endtime - starttime));
 	}
 }
 

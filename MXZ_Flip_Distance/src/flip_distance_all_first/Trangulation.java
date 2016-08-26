@@ -107,14 +107,18 @@ public class Trangulation {
 	}
 
 	boolean isConvex(int [] result){
-		float a = (float)((fninit[result[1]].y - fninit[result[3]].y) * 1.0 / (fninit[result[1]].x - fninit[result[3]].x));
-		float b = fninit[result[1]].y - a * fninit[result[1]].x;
-		float p,q,pp,qq;
-		p = fninit[result[0]].y - a * fninit[result[0]].x - b;
-		q = fninit[result[2]].y - a * fninit[result[2]].x - b;
-		pp = fninit[result[2]].y - a * fninit[result[2]].x - b;
-		qq = fninit[result[0]].y - a * fninit[result[0]].x - b;
-		if(p * q < 0 || pp * qq < 0)
+		float p = 0,q = 0;
+		if (fninit[result[1]].x - fninit[result[3]].x != 0){
+			float a = (float)((fninit[result[1]].y - fninit[result[3]].y) * 1.0 / (fninit[result[1]].x - fninit[result[3]].x));
+			float b = fninit[result[1]].y - a * fninit[result[1]].x;
+			p = fninit[result[0]].y - a * fninit[result[0]].x - b;
+			q = fninit[result[2]].y - a * fninit[result[2]].x - b;
+		}
+		else{
+			p = fninit[result[0]].x - fninit[result[1]].x;
+			q = fninit[result[2]].x - fninit[result[1]].x;
+		}
+		if(p * q < 0)
 			return true;
 		else
 			return false;
@@ -145,7 +149,7 @@ public class Trangulation {
 		}
 	}
 	public static void main(String[] args) {
-		System.out.println("ÇëÊäÈë¶¥µãÊý£º");
+		System.out.println("è¯·è¾“å…¥é¡¶ç‚¹æ•°ï¼š");
 		Scanner si = new Scanner(System.in);
 		int vertexnumber;
 		vertexnumber = si.nextInt();
@@ -156,16 +160,16 @@ public class Trangulation {
 //		System.out.println(m.fninit);
 //		System.out.println(m.fninit[0]);
 
-		System.out.println("ÇëÊäÈë¶¥µãÖµ£º");
+		System.out.println("è¯·è¾“å…¥é¡¶ç‚¹å€¼ï¼š");
 		for(int i = 1; i <= vertexnumber;i++){
 			m.fninit[i].x = si.nextInt();
 			m.fninit[i].y = si.nextInt();
 		}
-		System.out.println("ÇëÊäÈë¹Ì¶¨±ßÊý£º");
+		System.out.println("è¯·è¾“å…¥å›ºå®šè¾¹æ•°ï¼š");
 //		int x1,x2,y1,y2;
 		int x1,x2;
 		int en1 = si.nextInt();
-		System.out.println("ÇëÊäÈë¹Ì¶¨±ßÖµ£º");
+		System.out.println("è¯·è¾“å…¥å›ºå®šè¾¹å€¼ï¼š");
 //		for(int i = 0;i < en1;i++){
 //			x1 = si.nextInt();
 //			y1 = si.nextInt();
@@ -186,9 +190,9 @@ public class Trangulation {
 			m.fnfinal[x1].sn[x2] = 1;
 			m.fnfinal[x2].sn[x1] = 1;
 		}
-		System.out.println("ÇëÊäÈë¿É±ä±ßÊý£º");
+		System.out.println("è¯·è¾“å…¥å¯å˜è¾¹æ•°ï¼š");
 		int en2 = si.nextInt();
-		System.out.println("ÇëÊäÈëÔ­Ê¼¿É±ä±ßÖµ£º");
+		System.out.println("è¯·è¾“å…¥åŽŸå§‹å¯å˜è¾¹å€¼ï¼š");
 //		for(int i = 0;i < en2;i++){
 //			x1 = si.nextInt();
 //			y1 = si.nextInt();
@@ -205,7 +209,7 @@ public class Trangulation {
 			m.fninit[x1].sn[x2] = 2;
 			m.fninit[x2].sn[x1] = 2;
 		}
-		System.out.println("ÇëÊäÈëÄ¿±ê¿É±ä±ßÖµ£º");
+		System.out.println("è¯·è¾“å…¥ç›®æ ‡å¯å˜è¾¹å€¼ï¼š");
 //		for(int i = 0;i < en2;i++){
 //			x1 = si.nextInt();
 //			y1 = si.nextInt();
@@ -222,7 +226,7 @@ public class Trangulation {
 			m.fnfinal[x1].sn[x2] = 2;
 			m.fnfinal[x2].sn[x1] = 2;
 		}
-		System.out.println("ÇëÊäÈë²ÎÊýÖµ£º");
+		System.out.println("è¯·è¾“å…¥å‚æ•°å€¼ï¼š");
 		int parameter = si.nextInt();
 		Trangulation.pk = parameter;
 		m.cmp();
@@ -237,10 +241,7 @@ public class Trangulation {
 			for (int i = 1; i <= Trangulation.vn; i++) {
 				for (int j = 1; j <= Trangulation.vn; j++) {
 					if (m.fnfinal[i].sn[j] == 0 && m.fninit[i].sn[j] == 2 && i < j) {
-						v1[k] = new Edge();
-						v1[k].s = i;
-						v1[k].t = j;
-						v1[k].state = false;
+						v1[k] = new Edge(i,j);
 						k++;
 					}
 				}
@@ -248,11 +249,14 @@ public class Trangulation {
 			for (int i = 0; i < dd.count; i++) {
 				tem = dd.result[i];
 				if (tem[0] > v1.length) continue;
-				f.v.clear();
 				for (Edge e : v1) {
 					e.state = false;
 				}
-				f.recursion(m, tem, 1, v1);
+				if (f.output)for (int j = 0; j <= tem[0]; j++) {
+					System.out.print(tem[j] + "	");
+				}
+				if (f.output)System.out.println();
+				f.recursion(m, tem, 1, v1,0);
 				if (f.state) break;
 			}
 		}

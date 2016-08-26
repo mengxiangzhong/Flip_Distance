@@ -3,12 +3,13 @@ package flip_distance_all_second;
 import java.util.Vector;
 
 public class Flip {
-	boolean state;
+	boolean state,output;
 	Vector <Edge> v[];
 	Flip(){
 	}
 	Flip(int k){
 		state = false;
+		output = false;
 		v = new Vector[k];
 		for (int i = 0; i < k; i++) {
 			v[i] = new Vector<Edge>();
@@ -31,29 +32,29 @@ public class Flip {
 		for (int i = 0; i < n; i++) {
 			System.out.print("	");
 		}
-		System.out.println("µ±Ç°´¦ÔÚµÚ" + k + "¸öÁ¬Í¨¿é,½øÐÐµÄÊÇµÚ" + style + "ÖÖ²Ù×÷");
+		System.out.println("å½“å‰å¤„åœ¨ç¬¬" + k + "ä¸ªè¿žé€šå—,è¿›è¡Œçš„æ˜¯ç¬¬" + style + "ç§æ“ä½œ");
 	}
 	void printAction(int x1,int y1,int x2,int y2,int choice,int n){
 		for (int i = 0; i < n; i++) {
 			System.out.print("	");
 		}
 		if (choice == 1){
-			System.out.println("´Ó±ß" + x1 + y1 + "·­µ½" + x2 + y2);
+			System.out.println("ä»Žè¾¹" + x1 + y1 + "ç¿»åˆ°" + x2 + y2);
 		}
 		else if (choice == 2){
-			System.out.println("µ±Ç°²Ù×÷±ßÓÉ" + x1 + y1 + "ÒÆµ½" + x2 + y2);
+			System.out.println("å½“å‰æ“ä½œè¾¹ç”±" + x1 + y1 + "ç§»åˆ°" + x2 + y2);
 		}
 		else if (choice == 3){
-			System.out.println("°Ñ±ß" + x1 + y1 + "Ñ¹Õ»");
+			System.out.println("æŠŠè¾¹" + x1 + y1 + "åŽ‹æ ˆ");
 		}
 		else if (choice == 4){
-			System.out.println("Ìøµ½Õ»¶¥" + x1 + y1 + "£¬µ±Ç°²Ù×÷±ßÎª" + x2 + y2);
+			System.out.println("è·³åˆ°æ ˆé¡¶" + x1 + y1 + "ï¼Œå½“å‰æ“ä½œè¾¹ä¸º" + x2 + y2);
 		}
 		else if (choice == 0){
-			System.out.println("µ±Ç°²Ù×÷±ßÎª" + x1 + y1);
+			System.out.println("å½“å‰æ“ä½œè¾¹ä¸º" + x1 + y1);
 		}
 		else{
-			System.out.println("Ìøµ½Õ»¶¥" + x1 + y1 + "£¬É¾³ýÕ»¶¥±ß£¬µ±Ç°²Ù×÷±ßÎª" + x2 + y2);
+			System.out.println("è·³åˆ°æ ˆé¡¶" + x1 + y1 + "ï¼Œåˆ é™¤æ ˆé¡¶è¾¹ï¼Œå½“å‰æ“ä½œè¾¹ä¸º" + x2 + y2);
 		}
 	}
 	Edge[] edgecpy(Edge[] edges){
@@ -65,16 +66,16 @@ public class Flip {
 		return e;
 	}
 	void firstCase(Trangulation t,int k,int kk,int []result,int []temd,int current,Edge[] edge,int index,int n){
-		in(n);
+		if (output)in(n);
 		if (state || current == temd[0] + 1) {
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		Trangulation tem;
 		t.cmp();
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (k == 0 || kk == 0){
@@ -92,17 +93,17 @@ public class Flip {
 			if (e[index].state && t.step_remained == sum && count == temd[current])
 //			if (t.step_remained == sum && count == temd[current])
 				recursion(t,temd,current + 1,e,n + 1);
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		tem = t.cpy();
-		print(current,1,n);
+		if (output)print(current,1,n);
 		if(tem.fninit[result[0]].sn[result[1]] == 2
 				&& !(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[1]
 				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[0];
 			tem.current_edge_y = result[1];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -119,7 +120,7 @@ public class Flip {
 				|| tem.last_last_edge_x == result[2] && tem.last_last_edge_y == result[1])) {
 			tem.current_edge_x = result[1];
 			tem.current_edge_y = result[2];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -136,7 +137,7 @@ public class Flip {
 				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[2])) {
 			tem.current_edge_x = result[2];
 			tem.current_edge_y = result[3];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -153,7 +154,7 @@ public class Flip {
 				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[3];
 			tem.current_edge_y = result[0];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if( temresult != null ){
 				firstCase(tem,k,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -165,24 +166,24 @@ public class Flip {
 				}
 			}
 		}
-		out(n);
+		if (output)out(n);
 	}
 	void secondCase(Trangulation t,int k,int kk,int [] result,int []temd,int current,Edge[] edge,int index,int n){
-		in(n);
+		if (output)in(n);
 		if (state || current == temd[0] + 1){
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		Trangulation tem;
 		t.cmp();
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (k == 0 || kk == 0){
@@ -200,20 +201,20 @@ public class Flip {
 			if (e[index].state && t.step_remained == sum && count == temd[current])
 //			if (t.step_remained == sum && count == temd[current])
 				recursion(t,temd,current + 1,e,n + 1);
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		tem = t.cpy();
 		tem.diagonal(result);
-		print(current,2,n);
-		printAction(result[0],result[2],result[1],result[3],1,n);
+		if (output)print(current,2,n);
+		if (output)printAction(result[0],result[2],result[1],result[3],1,n);
 		if(tem.fninit[result[0]].sn[result[1]] == 2){
 //		if(tem.fninit[result[0]].sn[result[1]] == 2
 //				&& !(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[1]
 //				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[0];
 			tem.current_edge_y = result[1];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -231,7 +232,7 @@ public class Flip {
 //				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[2])) {
 			tem.current_edge_x = result[1];
 			tem.current_edge_y = result[2];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -249,7 +250,7 @@ public class Flip {
 //				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[2])) {
 			tem.current_edge_x = result[2];
 			tem.current_edge_y = result[3];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -267,7 +268,7 @@ public class Flip {
 //				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[3];
 			tem.current_edge_y = result[0];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -279,24 +280,24 @@ public class Flip {
 				}
 			}
 		}
-		out(n);
+		if (output)out(n);
 	}
 	void thirdCase(Trangulation t,int k,int kk,int [] result,int []temd,int current,Edge[] edge,int index,int n){
-		in(n);
+		if (output)in(n);
 		if (state || current == temd[0] + 1) {
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		Trangulation tem;
 		t.cmp();
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (k == 0 || kk == 0){
@@ -314,23 +315,23 @@ public class Flip {
 			if (e[index].state && t.step_remained == sum && count == temd[current])
 //			if (t.step_remained == sum && count == temd[current])
 				recursion(t,temd,current + 1,e,n + 1);
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		tem = t.cpy();
 		tem.diagonal(result);
 		Edge e = new Edge(result[1],result[3]);
 		v[current - 1].add(e);
-		print(current,3,n);
-		printAction(result[0],result[2],result[1],result[3],1,n);
-		printAction(result[1],result[3],0,0,3,n);
+		if (output)print(current,3,n);
+		if (output)printAction(result[0],result[2],result[1],result[3],1,n);
+		if (output)printAction(result[1],result[3],0,0,3,n);
 		if(tem.fninit[result[0]].sn[result[1]] == 2){
 //		if(tem.fninit[result[0]].sn[result[1]] == 2
 //				&& !(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[1]
 //				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[0];
 			tem.current_edge_y = result[1];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -348,7 +349,7 @@ public class Flip {
 //				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[2])) {
 			tem.current_edge_x = result[1];
 			tem.current_edge_y = result[2];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -366,7 +367,7 @@ public class Flip {
 //				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[2])) {
 			tem.current_edge_x = result[2];
 			tem.current_edge_y = result[3];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -384,7 +385,7 @@ public class Flip {
 //				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[3];
 			tem.current_edge_y = result[0];
-			printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
+			if (output)printAction(tem.last_edge_x,tem.last_edge_y,tem.current_edge_x,tem.current_edge_y,2,n);
 			int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 			if ( temresult != null ){
 				firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
@@ -396,24 +397,24 @@ public class Flip {
 				}
 			}
 		}
-		out(n);
+		if (output)out(n);
 	}
 	void fourthCase(Trangulation t,int k,int kk,int [] result,int []temd,int current,Edge[] edge,int index,int n){
-		in(n);
+		if (output)in(n);
 		if (state || current == temd[0] + 1) {
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		Trangulation tem;
 		t.cmp();
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (k == 0 || kk == 0){
@@ -431,44 +432,44 @@ public class Flip {
 			if (e[index].state && t.step_remained == sum && count == temd[current])
 //			if (t.step_remained == sum && count == temd[current])
 				recursion(t,temd,current + 1,e,n + 1);
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		tem = t.cpy();
 		tem.diagonal(result);
-		print(current,4,n);
-		printAction(result[0],result[2],result[1],result[3],1,n);
+		if (output)print(current,4,n);
+		if (output)printAction(result[0],result[2],result[1],result[3],1,n);
 		Edge e;
 		if (!v[current - 1].isEmpty()){
 			e = v[current - 1].lastElement();
 		}
 		else {
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		tem.current_edge_x = e.s;
 		tem.current_edge_y = e.t;
-		printAction(result[1],result[3],e.s,e.t,4,n);
+		if (output)printAction(result[1],result[3],e.s,e.t,4,n);
 		int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 		firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
-		out(n);
+		if (output)out(n);
 	}
 	void fifthCase(Trangulation t,int k,int kk,int [] result,int []temd,int current,Edge[] edge,int index,int n){
-		in(n);
+		if (output)in(n);
 		if (state || current == temd[0] + 1){
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		Trangulation tem;
 		t.cmp();
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (t.step_remained == 0){
 			state = true;
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		if (k == 0 || kk == 0){
@@ -486,28 +487,28 @@ public class Flip {
 			if (e[index].state && t.step_remained == sum && count == temd[current])
 //			if (t.step_remained == sum && count == temd[current])
 				recursion(t,temd,current + 1,e,n + 1);
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		tem = t.cpy();
 		tem.diagonal(result);
-		print(current,5,n);
-		printAction(result[0],result[2],result[1],result[3],1,n);
+		if (output)print(current,5,n);
+		if (output)printAction(result[0],result[2],result[1],result[3],1,n);
 		Edge e;
 		if (!v[current - 1].isEmpty()){
 			e = v[current - 1].lastElement();
 		}
 		else {
-			out(n);
+			if (output)out(n);
 			return;
 		}
 		tem.current_edge_x = e.s;
 		tem.current_edge_y = e.t;
-		printAction(result[1],result[3],e.s,e.t,5,n);
+		if (output)printAction(result[1],result[3],e.s,e.t,5,n);
 		int []temresult = tem.isQuadrilateral(tem.current_edge_x,tem.current_edge_y);
 		firstCase(tem,k - 1,kk - 1,temresult,temd,current,edge,index,n + 1);
 		v[current - 1].remove(v[current - 1].size()-1);
-		out(n);
+		if (output)out(n);
 	}
 	void recursion(Trangulation t,int []temdd,int current,Edge[] edges,int n){
 		Edge e = null;
@@ -528,7 +529,7 @@ public class Flip {
 		}
 		t.current_edge_x = e.s;
 		t.current_edge_y = e.t;
-		printAction(e.s,e.t,0,0,0,n);
+		if (output)printAction(e.s,e.t,0,0,0,n);
 		int []result = t.isQuadrilateral(t.current_edge_x,t.current_edge_y);
 		if ( result != null ){
 			firstCase(t,temdd[current],temdd[current] * 2,result,temdd,current,edges,index,n);
