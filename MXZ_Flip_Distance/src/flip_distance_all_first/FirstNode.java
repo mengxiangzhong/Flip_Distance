@@ -22,8 +22,8 @@ public class FirstNode {
 	FirstNode(){
 		x = 0;
 		y = 0;
-		sn = new short[vn + 1];
-		for(int i = 1;i <= vn; i++){
+		sn = new short[vn + 4];
+		for(int i = 1;i <= vn + 3; i++){
 			sn[i] = 0;
 		}
 	}

@@ -1,32 +1,30 @@
 package flip_distance_all_first;
 
-import java.util.Vector;
-
 public class Flip {
-	boolean state,output;
+	boolean state;
+	static boolean output;
 	Flip(){
 		state = false;
-		output = false;
 	}
-	void in(int n){
+	private void in(int n){
 		for (int i = 0; i < n; i++) {
 			System.out.print("	");
 		}
 		System.out.println("------------------>>>>>>");
 	}
-	void out(int n){
+	private void out(int n){
 		for (int i = 0; i < n; i++) {
 			System.out.print("	");
 		}
 		System.out.println("<<<<<<------------------");
 	}
-	void print(int k,int style,int n){
+	private void print(int k, int style, int n){
 		for (int i = 0; i < n; i++) {
 			System.out.print("	");
 		}
 		System.out.println("当前处在第" + k + "个连通块,进行的是第" + style + "种操作");
 	}
-	void printAction(int x1,int y1,int x2,int y2,int choice,int n){
+	private void printAction(int x1, int y1, int x2, int y2, int choice, int n){
 		for (int i = 0; i < n; i++) {
 			System.out.print("	");
 		}
@@ -40,7 +38,7 @@ public class Flip {
 			System.out.println("当前操作边为" + x1 + y1);
 		}
 	}
-	Edge[] edgecpy(Edge[] edges){
+	private Edge[] edgecpy(Edge[] edges){
 		Edge[] e = new Edge[edges.length];
 		for (int i = 0; i < e.length; i++) {
 			e[i] = new Edge(edges[i].s,edges[i].t);
@@ -48,7 +46,7 @@ public class Flip {
 		}
 		return e;
 	}
-	void firstCase(Trangulation t,int k,int kk,int []result,int []temd,int current,Edge[] edge,int index,int n){
+	private void firstCase(Trangulation t, int k, int kk, int[] result, int[] temd, int current, Edge[] edge, int index, int n){
 		if (output)in(n);
 		if (state || current == temd[0] + 1) {
 			if (output)out(n);
@@ -65,8 +63,8 @@ public class Flip {
 			Edge [] e = edgecpy(edge);
 			int sum = 0,count = 0;
 			for (Edge teme:e) {
-				if (teme.state == false){
-					if(t.fninit[teme.s].sn[teme.t] ==2 && t.fnfinal[teme.s].sn[teme.t] == 0)sum++;
+				if (!teme.state){
+					if(t.fninit[teme.s].sn[teme.t] ==1 && t.fnfinal[teme.s].sn[teme.t] == 0)sum++;
 					else {
 						teme.state = true;
 						count++;
@@ -81,8 +79,7 @@ public class Flip {
 		}
 		tem = t.cpy();
 		if (output)print(current,1,n);
-		if(tem.fninit[result[0]].sn[result[1]] == 2
-				&& !(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[1]
+		if(!(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[1]
 				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[0];
 			tem.current_edge_y = result[1];
@@ -95,8 +92,7 @@ public class Flip {
 				}
 			}
 		}
-		if(tem.fninit[result[1]].sn[result[2]] == 2
-				&& !(tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[2]
+		if(!(tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[2]
 				|| tem.last_last_edge_x == result[2] && tem.last_last_edge_y == result[1])) {
 			tem.current_edge_x = result[1];
 			tem.current_edge_y = result[2];
@@ -109,8 +105,7 @@ public class Flip {
 				}
 			}
 		}
-		if(tem.fninit[result[2]].sn[result[3]] == 2
-				&& !(tem.last_last_edge_x == result[2] && tem.last_last_edge_y == result[3]
+		if(!(tem.last_last_edge_x == result[2] && tem.last_last_edge_y == result[3]
 				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[2])) {
 			tem.current_edge_x = result[2];
 			tem.current_edge_y = result[3];
@@ -123,8 +118,7 @@ public class Flip {
 				}
 			}
 		}
-		if(tem.fninit[result[3]].sn[result[0]] == 2
-				&& !(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[3]
+		if(!(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[3]
 				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[0])) {
 			tem.current_edge_x = result[3];
 			tem.current_edge_y = result[0];
@@ -139,7 +133,7 @@ public class Flip {
 		}
 		if (output)out(n);
 	}
-	void secondCase(Trangulation t,int k,int kk,int [] result,int []temd,int current,Edge[] edge,int index,int n){
+	private void secondCase(Trangulation t, int k, int kk, int[] result, int[] temd, int current, Edge[] edge, int index, int n){
 		if (output)in(n);
 		if (state || current == temd[0] + 1){
 			if (output)out(n);
@@ -152,17 +146,12 @@ public class Flip {
 			if (output)out(n);
 			return;
 		}
-		if (t.step_remained == 0){
-			state = true;
-			if (output)out(n);
-			return;
-		}
 		if (k == 0 || kk == 0){
 			Edge [] e = edgecpy(edge);
 			int sum = 0,count = 0;
 			for (Edge teme:e) {
-				if (teme.state == false){
-					if(t.fninit[teme.s].sn[teme.t] ==2 && t.fnfinal[teme.s].sn[teme.t] == 0)sum++;
+				if (!teme.state){
+					if(t.fninit[teme.s].sn[teme.t] ==1 && t.fnfinal[teme.s].sn[teme.t] == 0)sum++;
 					else {
 						teme.state = true;
 						count++;
@@ -179,7 +168,7 @@ public class Flip {
 		tem.diagonal(result);
 		if (output)print(current,2,n);
 		if (output)printAction(result[0],result[2],result[1],result[3],1,n);
-		if(tem.fninit[result[0]].sn[result[1]] == 2){
+		{
 //		if(tem.fninit[result[0]].sn[result[1]] == 2
 //				&& !(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[1]
 //				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[0])) {
@@ -194,7 +183,7 @@ public class Flip {
 				}
 			}
 		}
-		if(tem.fninit[result[1]].sn[result[2]] == 2){
+		{
 //		if(tem.fninit[result[1]].sn[result[2]] == 2
 //				&& !(tem.last_last_edge_x == result[2] && tem.last_last_edge_y == result[1]
 //				|| tem.last_last_edge_x == result[1] && tem.last_last_edge_y == result[2])) {
@@ -209,7 +198,7 @@ public class Flip {
 				}
 			}
 		}
-		if(tem.fninit[result[2]].sn[result[3]] == 2){
+		{
 //		if(tem.fninit[result[2]].sn[result[3]] == 2
 //				&& !(tem.last_last_edge_x == result[2] && tem.last_last_edge_y == result[3]
 //				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[2])) {
@@ -224,7 +213,7 @@ public class Flip {
 				}
 			}
 		}
-		if(tem.fninit[result[3]].sn[result[0]] == 2){
+		{
 //		if(tem.fninit[result[3]].sn[result[0]] == 2
 //				&& !(tem.last_last_edge_x == result[0] && tem.last_last_edge_y == result[3]
 //				|| tem.last_last_edge_x == result[3] && tem.last_last_edge_y == result[0])) {
